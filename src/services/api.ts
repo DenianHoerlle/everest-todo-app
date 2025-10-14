@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// TODO add to .env?
 const baseUrl = "https://everest-interview-public-files.s3.amazonaws.com";
 
 const ONE_SECOND_IN_MS = 1000;

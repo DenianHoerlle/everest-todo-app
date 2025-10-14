@@ -15,13 +15,14 @@ const useTodoStore = create<TodoState>()((set, get) => ({
   todos: [],
   latestId: 0,
   addTodo: content =>
-    set(state => ({
-      todos: [
-        ...state.todos,
-        { content, id: state.latestId + 1, checked: false },
-      ],
-      latestId: get().latestId + 1,
-    })),
+    set(state => {
+      const nextId = get().latestId + 1;
+
+      return {
+        todos: [...state.todos, { content, id: nextId, checked: false }],
+        latestId: nextId,
+      };
+    }),
   getInitialTodos: async () => {
     const { data } = await todoServices.getTodoList();
 
