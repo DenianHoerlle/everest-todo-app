@@ -1,0 +1,37 @@
+import { TodoEntry, TodoList } from "types";
+
+// TODO check if theres a better way of doing this(looks ugly)
+function isValidTodo(todo: TodoEntry): todo is TodoEntry {
+  const { id, content, checked } = todo as TodoEntry;
+
+  if (typeof id !== "number") return false;
+  if (typeof content !== "string") return false;
+  if (typeof checked !== "boolean") return false;
+
+  return true;
+}
+
+// TODO move type?
+type NormalizedTodosWithMaxId = {
+  latestId: number;
+  todos: TodoList;
+};
+
+export const normalizeTodoList = (
+  todos: TodoList,
+): NormalizedTodosWithMaxId => {
+  // Not sure if the API will always send a sorted list.
+  // If thats the case, 'max' could be replaced with 'todos.slice(-1)[0].id'
+  // and 'filteredTodos' could be simplified into 'todos.filter(isValidTodo)'
+  let max: number = -1;
+
+  const filteredTodos = todos.filter(todo => {
+    if (!isValidTodo(todo)) return false;
+
+    if (todo.id > max) max = todo.id;
+
+    return true;
+  });
+
+  return { latestId: max, todos: filteredTodos };
+};
