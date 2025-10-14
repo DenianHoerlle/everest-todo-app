@@ -1,34 +1,24 @@
-import { useState } from "react";
-import { TodoEntry, TodoList } from "types";
+import { TodoEntry } from "types";
+
+type TodoContent = Omit<TodoEntry, "id" | "checked">;
 
 import { SubmitHandler, useForm } from "react-hook-form";
-
-// TODO create incremental id generator based on API return
-const generateRandomId = (): number => Math.round(Math.random() * 100);
+import useTodoStore from "store";
 
 const Form = () => {
+  const addTodo = useTodoStore(state => state.addTodo);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<TodoEntry>();
+  } = useForm<TodoContent>();
 
-  // TODO use global store instead of local;
-  const [tasks, setTasks] = useState<TodoList>([]);
+  const onSubmit: SubmitHandler<TodoContent> = data => {
+    addTodo(data.content);
 
-  const onSubmit: SubmitHandler<TodoEntry> = data => {
     reset();
-
-    // TODO update global store instead of local;
-    setTasks([
-      ...tasks,
-      {
-        id: generateRandomId(),
-        content: data.content,
-        checked: false,
-      },
-    ]);
   };
 
   return (
