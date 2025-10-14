@@ -1,7 +1,12 @@
-import { Header } from "components";
+import { Form, Header } from "components";
 
 const HomeScreen = () => {
-  return <Header />;
+  return (
+    <div>
+      <Header />
+      <Form />
+    </div>
+  );
 };
 
 export default HomeScreen;
