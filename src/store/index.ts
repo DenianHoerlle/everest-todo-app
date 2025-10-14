@@ -1,31 +1,35 @@
-import { taskServices } from "services";
-import { TodoEntry, TodoList } from "types";
+import { todoServices } from "services";
+import { TodoList } from "types";
 import { normalizeTodoList } from "utils";
 import { create } from "zustand";
 
-interface TaskState {
-  tasks: TodoList;
+interface TodoState {
+  todos: TodoList;
   latestId: number;
-  addTask: (newTask: TodoEntry) => void;
-  getInitialTasks: () => void;
+  addTodo: (content: string) => void;
+  getInitialTodos: () => void;
 }
 
-const useTaskStore = create<TaskState>()(set => ({
-  tasks: [],
+// TODO this hook could use some readability improvements(don't know how yet tho)
+const useTodoStore = create<TodoState>()((set, get) => ({
+  todos: [],
   latestId: 0,
-  addTask: newTask =>
+  addTodo: content =>
     set(state => ({
-      tasks: [...state.tasks, { ...newTask, id: state.latestId + 1 }],
-      latestId: state.latestId + 1,
+      todos: [
+        ...state.todos,
+        { content, id: state.latestId + 1, checked: false },
+      ],
+      latestId: get().latestId + 1,
     })),
-  getInitialTasks: async () => {
-    const { data } = await taskServices.getTaskList();
+  getInitialTodos: async () => {
+    const { data } = await todoServices.getTodoList();
 
     // TODO avaliate if theres a better place to handle API request
     const { todos, latestId } = normalizeTodoList(data.todos);
 
-    set({ tasks: todos, latestId });
+    set({ todos, latestId });
   },
 }));
 
-export default useTaskStore;
+export default useTodoStore;

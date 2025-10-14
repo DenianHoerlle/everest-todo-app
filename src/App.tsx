@@ -1,10 +1,10 @@
 import { FC, useEffect } from "react";
 
 import { HomeScreen } from "screens";
-import useTaskStore from "store";
+import useTodoStore from "store";
 
 const App: FC = () => {
-  const initStore = useTaskStore(state => state.getInitialTasks);
+  const initStore = useTodoStore(state => state.getInitialTodos);
 
   useEffect(() => {
     initStore();
