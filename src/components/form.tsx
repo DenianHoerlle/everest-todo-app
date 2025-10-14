@@ -1,10 +1,7 @@
 import { useState } from "react";
+import { TodoEntry, TodoList } from "types";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-
-// TODO move types to separate file
-type TodoEntry = { id: number; content: string; checked: boolean };
-type TodoList = TodoEntry[];
 
 // TODO create incremental id generator based on API return
 const generateRandomId = (): number => Math.round(Math.random() * 100);
