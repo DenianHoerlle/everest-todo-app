@@ -1,5 +1,6 @@
 import { TodoEntry } from "types";
 
+// TODO move type?
 type TodoContent = Omit<TodoEntry, "id" | "checked">;
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -30,7 +31,7 @@ const Form = () => {
 
       {errors.content && <span>This field can't be empty</span>}
 
-      <input className="border" type="submit" value="Send" />
+      <input className="border" type="submit" value="Submit" />
     </form>
   );
 };
