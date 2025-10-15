@@ -9,6 +9,7 @@ interface TodoState {
   addTodo: (content: string) => void;
   getInitialTodos: () => void;
   checkTodo: (id: number) => void;
+  deleteTodo: (id: number) => void;
 }
 
 // TODO this hook could use some readability improvements(don't know how yet tho)
@@ -37,6 +38,16 @@ const useTodoStore = create<TodoState>()((set, get) => ({
       };
 
       return { todos: sortNewlyCheckedTodo(newTodos, checkedTodoIndex) };
+    }),
+  deleteTodo: id =>
+    set(state => {
+      const newTodos = new Array(...state.todos);
+
+      const removedTodoIndex = newTodos.findIndex(todo => todo.id === id);
+
+      newTodos.splice(removedTodoIndex, 1);
+
+      return { todos: newTodos };
     }),
   getInitialTodos: async () => {
     const { data } = await todoServices.getTodoList();
