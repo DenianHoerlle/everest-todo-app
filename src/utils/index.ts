@@ -21,23 +21,30 @@ export const sortNewlyCheckedTodo = (
   todos: TodoList,
   newlyCheckedTodoIndex: number,
 ): TodoList => {
-  const firstFalseTodoIndex = todos.findIndex(({ checked }) => !checked);
-
-  if (firstFalseTodoIndex > newlyCheckedTodoIndex) return todos;
+  if (todos[newlyCheckedTodoIndex + 1].checked) return todos;
 
   const newlyCheckedTodo = todos[newlyCheckedTodoIndex];
 
+  let firstCheckedTodoIndex = 0;
+
+  for (let i = newlyCheckedTodoIndex + 1; i < todos.length; i++) {
+    if (todos[i].checked) {
+      firstCheckedTodoIndex = i;
+      break;
+    }
+  }
+
   // Add 'newlyCheckedTodo' in correct place
-  todos.splice(firstFalseTodoIndex, 0, newlyCheckedTodo);
+  todos.splice(firstCheckedTodoIndex, 0, newlyCheckedTodo);
 
   // Remove 'newlyCheckedTodo' out of position duplicate
-  todos.splice(newlyCheckedTodoIndex + 1, 1);
+  todos.splice(newlyCheckedTodoIndex, 1);
 
   return todos;
 };
 
 const sortByBoolean = (prev: boolean, next: boolean): number => {
-  return (next ? 1 : 0) - (prev ? 1 : 0);
+  return (prev ? 1 : 0) - (next ? 1 : 0);
 };
 
 export const normalizeTodoList = (
