@@ -17,6 +17,25 @@ type NormalizedTodosWithMaxId = {
   todos: TodoList;
 };
 
+export const sortNewlyCheckedTodo = (
+  todos: TodoList,
+  newlyCheckedTodoIndex: number,
+): TodoList => {
+  const firstFalseTodoIndex = todos.findIndex(({ checked }) => !checked);
+
+  if (firstFalseTodoIndex > newlyCheckedTodoIndex) return todos;
+
+  const newlyCheckedTodo = todos[newlyCheckedTodoIndex];
+
+  // Add 'newlyCheckedTodo' in correct place
+  todos.splice(firstFalseTodoIndex, 0, newlyCheckedTodo);
+
+  // Remove 'newlyCheckedTodo' out of position duplicate
+  todos.splice(newlyCheckedTodoIndex + 1, 1);
+
+  return todos;
+};
+
 const sortByBoolean = (prev: boolean, next: boolean): number => {
   return (next ? 1 : 0) - (prev ? 1 : 0);
 };
