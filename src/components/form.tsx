@@ -31,7 +31,7 @@ const Form = () => {
 
       {errors.content && <span>This field can't be empty</span>}
 
-      <input className="border" type="submit" value="Send" />
+      <input className="border" type="submit" value="Submit" />
     </form>
   );
 };
