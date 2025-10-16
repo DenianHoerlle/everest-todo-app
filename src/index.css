@@ -14,6 +14,11 @@
 
   /* Custom variables */
   --font-barlow: "Barlow Condensed", sans-serif;
+
+  /* Colors */
+  --color-ever-red: #f96673;
+  --color-ever-blue: #2a6483;
+  --color-ever-grey: #9fbdcd;
 }
 
 @layer components {
