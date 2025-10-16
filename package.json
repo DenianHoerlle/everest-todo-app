@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "4.1.14",
     "axios": "1.12.2",
+    "lodash.throttle": "^4.1.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-hook-form": "7.65.0",
@@ -19,6 +20,7 @@
     "zustand": "5.0.8"
   },
   "devDependencies": {
+    "@types/lodash.throttle": "^4.1.9",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "7.13.1",
