@@ -7,19 +7,19 @@ const Header = () => {
   const maxHeaderClassName = "header-max";
   const minHeaderClassName = "header-min";
 
-  const className = `flex fixed top-0 transition w-full justify-start items-center px-5 py-3 border-b ${isHeaderMinimized ? minHeaderClassName : maxHeaderClassName}`;
+  const className = `flex fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassName : maxHeaderClassName}`;
 
   const renderText = () => {
-    const title = isHeaderMinimized ? "TODO" : "Everest Systems' TODO App";
+    const subTextClassName = isHeaderMinimized ? "fade-out" : "fade-in";
 
     return (
       <>
-        <h1 className="fade-in text-lg font-bold whitespace-nowrap">{title}</h1>
-        {!isHeaderMinimized && (
-          <h2 className="fade-in text-xs whitespace-nowrap">
-            By Dênian Hoerlle
-          </h2>
-        )}
+        <h1 className="text-lg font-bold whitespace-nowrap">
+          Everest Systems' TODO App
+        </h1>
+        <h2 className={`text-xxs whitespace-nowrap ${subTextClassName}`}>
+          By Dênian Hoerlle
+        </h2>
       </>
     );
   };
@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <header className={className}>
       <img className="transition" src={everestLogo} />
-      <div className="mx-auto flex max-w-min grow flex-col text-right">
+      <div className="mx-auto flex max-w-min flex-col text-right">
         {renderText()}
       </div>
     </header>

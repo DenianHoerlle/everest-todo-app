@@ -19,14 +19,19 @@
   --color-ever-red: #f96673;
   --color-ever-blue: #2a6483;
   --color-ever-grey: #9fbdcd;
+
+  /* Shadow */
+  --shadow-header: 0px 0px 15px 0px rgba(0, 0, 0, 0.6);
+
+  /* Text-size */
+  --text-xxs: 10px;
 }
 
 @layer components {
   /* Animations */
   .header-min {
     animation-name: shrink;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
+    animation-timing-function: var(--default-transition-timing-function);
     animation-duration: var(--default-transition-duration);
     height: 40px;
   }
@@ -46,8 +51,7 @@
 
   .header-max {
     animation-name: increase;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
+    animation-timing-function: var(--default-transition-timing-function);
     animation-duration: var(--default-transition-duration);
     height: 80px;
   }
@@ -63,17 +67,41 @@
 
   .fade-in {
     animation-name: fade-in;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
+    animation-timing-function: var(--default-transition-timing-function);
     animation-duration: var(--default-transition-duration);
   }
 
   @keyframes fade-in {
     0% {
       opacity: 0;
+      height: 0;
     }
     100% {
       opacity: 1;
+      height: auto;
+    }
+  }
+
+  .fade-out {
+    animation-name: fade-out;
+    animation-timing-function: var(--default-transition-timing-function);
+    animation-duration: var(--default-transition-duration);
+
+    opacity: 0;
+    height: 0;
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+      height: auto;
+    }
+    90% {
+      height: auto;
+    }
+    100% {
+      opacity: 0;
+      height: 0;
     }
   }
 }
