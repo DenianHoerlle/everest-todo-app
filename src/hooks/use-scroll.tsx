@@ -1,8 +1,8 @@
+import throttle from "lodash.throttle";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const THROTTLE_TIME_IN_MS = 150;
-
-type Timeout = ReturnType<typeof setTimeout> | null;
 
 const getScrollPosition = () => {
   if (typeof window === "undefined") {
@@ -26,30 +26,20 @@ const useScroll = () => {
   const isRecharging = useRef<boolean>(false);
 
   useEffect(() => {
-    let timeout: Timeout = null;
+    const handleDocumentScroll = throttle(() => {
+      isRecharging.current = false;
 
-    const handleDocumentScroll = () => {
-      // TODO check why this function gets stuck at 'true' sometimes
-      if (isRecharging.current) return;
+      const scrollTop = getScrollPosition();
 
-      isRecharging.current = true;
+      previousScrollTop.current = currentScrollTop;
 
-      timeout = setTimeout(() => {
-        const scrollTop = getScrollPosition();
-
-        previousScrollTop.current = currentScrollTop;
-
-        setCurrentScrollTop(scrollTop);
-
-        isRecharging.current = false;
-      }, THROTTLE_TIME_IN_MS);
-    };
+      setCurrentScrollTop(scrollTop);
+    }, THROTTLE_TIME_IN_MS);
 
     window.addEventListener("scroll", handleDocumentScroll);
 
     return () => {
       window.removeEventListener("scroll", handleDocumentScroll);
-      if (timeout) clearTimeout(timeout);
     };
   }, [currentScrollTop]);
 
