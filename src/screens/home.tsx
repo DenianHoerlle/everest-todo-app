@@ -2,7 +2,7 @@ import { Form, Header, TodoList } from "components";
 
 const HomeScreen = () => {
   return (
-    <div>
+    <div className="mt-20">
       <Header />
       <Form />
       <TodoList />
