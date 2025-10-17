@@ -7,6 +7,10 @@
   font-family: var(--font-barlow);
 }
 
+body {
+  background: var(--color-background);
+}
+
 @theme {
   /* Overwrite */
   --default-transition-duration: 250ms;
@@ -19,27 +23,32 @@
   --color-ever-red: #f96673;
   --color-ever-blue: #2a6483;
   --color-ever-grey: #9fbdcd;
+  --color-background: #e4ecf8;
+  --color-input-background: #ffffff80;
 
   /* Shadow */
-  --shadow-header: 0px 0px 15px 0px rgba(0, 0, 0, 0.6);
+  --shadow-header: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  --shadow-clickable: 0px 0px 5px 0px var(--color-ever-red);
 
   /* Text-size */
   --text-xxs: 10px;
+
+  /* Animations */
+  --animate-header-min: shrink var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-header-max: increase var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-fade-in: fade-in var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-fade-out: fade-out var(--default-transition-duration)
+    var(--default-transition-timing-function);
 }
 
 @layer components {
-  /* Animations */
-  .header-min {
-    animation-name: shrink;
-    animation-timing-function: var(--default-transition-timing-function);
-    animation-duration: var(--default-transition-duration);
-    height: 40px;
-  }
-
-  .header-min > img {
-    transform: scale(0.5);
-  }
-
+  /* Keyframes */
   @keyframes shrink {
     0% {
       height: 80px;
@@ -48,14 +57,6 @@
       height: 40px;
     }
   }
-
-  .header-max {
-    animation-name: increase;
-    animation-timing-function: var(--default-transition-timing-function);
-    animation-duration: var(--default-transition-duration);
-    height: 80px;
-  }
-
   @keyframes increase {
     0% {
       height: 40px;
@@ -63,12 +64,6 @@
     100% {
       height: 80px;
     }
-  }
-
-  .fade-in {
-    animation-name: fade-in;
-    animation-timing-function: var(--default-transition-timing-function);
-    animation-duration: var(--default-transition-duration);
   }
 
   @keyframes fade-in {
@@ -80,15 +75,6 @@
       opacity: 1;
       height: auto;
     }
-  }
-
-  .fade-out {
-    animation-name: fade-out;
-    animation-timing-function: var(--default-transition-timing-function);
-    animation-duration: var(--default-transition-duration);
-
-    opacity: 0;
-    height: 0;
   }
 
   @keyframes fade-out {
@@ -103,5 +89,14 @@
       opacity: 0;
       height: 0;
     }
+  }
+
+  .hover-bg {
+    cursor: pointer;
+    transition: all var(--default-transition-duration)
+      var(--default-transition-timing-function);
+  }
+  .hover-bg:hover {
+    background-color: var(--color-ever-grey);
   }
 }
