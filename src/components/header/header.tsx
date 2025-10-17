@@ -4,13 +4,15 @@ import everestLogo from "/everest-logo.svg";
 const Header = () => {
   const { goingDown: isHeaderMinimized } = useScroll();
 
-  const maxHeaderClassName = "header-max";
-  const minHeaderClassName = "header-min";
+  const maxHeaderClassName = "h-20 animate-header-max ";
+  const minHeaderClassName = "h-10 animate-header-min [&>img]:scale-50";
 
   const className = `flex fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassName : maxHeaderClassName}`;
 
   const renderText = () => {
-    const subTextClassName = isHeaderMinimized ? "fade-out" : "fade-in";
+    const subTextClassName = isHeaderMinimized
+      ? "animate-fade-out h-0 opacity-0"
+      : "animate-fade-in ";
 
     return (
       <>

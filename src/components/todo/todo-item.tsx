@@ -3,6 +3,8 @@ import { ChangeEvent, memo, useCallback } from "react";
 import useTodoStore from "store";
 import { TodoEntry } from "types";
 
+import { CheckBoxComponent, DeleteIcon } from "./components";
+
 // Isn't gonna change
 const { checkTodo, deleteTodo } = useTodoStore.getState();
 
@@ -20,12 +22,16 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
     deleteTodo(id);
   }, [id]);
 
+  const checkedClassName = checked ? "opacity-50" : "";
+  const checkedTextClassName = checked ? "line-through" : "";
+
   return (
-    <div key={id} className="flex gap-3">
-      <span>{id}</span>
-      <span>{content}</span>
-      <button onClick={handleDelete}>delete</button>
-      <input type="checkbox" checked={checked} onChange={handleOnChange} />
+    <div
+      key={id}
+      className={`shadow-input flex w-full items-center gap-3 rounded-full bg-input-background px-4 py-3 ${checkedClassName}`}>
+      <CheckBoxComponent checked={checked} onChange={handleOnChange} />
+      <span className={checkedTextClassName}>{content}</span>
+      <DeleteIcon onClick={handleDelete} id={id} />
     </div>
   );
 };
