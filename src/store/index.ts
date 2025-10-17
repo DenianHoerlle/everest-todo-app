@@ -22,7 +22,7 @@ const useTodoStore = create<TodoState>()((set, get) => ({
       const nextId = get().latestId + 1;
 
       return {
-        todos: [...state.todos, { content, id: nextId, checked: false }],
+        todos: [{ content, id: nextId, checked: false }, ...state.todos],
         latestId: nextId,
       };
     }),
