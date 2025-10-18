@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 
 import useTodoStore from "store";
 import { TodoEntry } from "types";
@@ -9,14 +9,9 @@ import { CheckBoxComponent, DeleteIcon } from "./components";
 const { checkTodo, deleteTodo } = useTodoStore.getState();
 
 const TodoItem = ({ checked, content, id }: TodoEntry) => {
-  const handleOnChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      if (!event.target.checked) return;
-
-      checkTodo(id);
-    },
-    [id],
-  );
+  const handleOnChange = useCallback(() => {
+    checkTodo(id);
+  }, [id]);
 
   const handleDelete = useCallback(() => {
     deleteTodo(id);

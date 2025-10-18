@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 import { CheckMark } from "assets";
 
@@ -6,7 +6,7 @@ const ANIMATION_DURATION_IN_MS = 750;
 
 type CheckBox = {
   isChecked: boolean;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: () => void;
 };
 
 const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
@@ -14,19 +14,20 @@ const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
 
   const inputClassNames = isChecked ? "bg-ever-red" : "";
 
+  // TODO create 'uncheck' animation
   const wrapperAnimationClassNames = isAnimating
     ? "duration-500 bg-ever-red scale-150 ping"
     : "";
 
   const checkmarkClassNames = isChecked || isAnimating ? "" : "opacity-0";
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = () => {
     if (isAnimating) return;
 
     setIsAnimating(true);
 
     setTimeout(() => {
-      onChange(event);
+      onChange();
       setIsAnimating(false);
     }, ANIMATION_DURATION_IN_MS);
   };
