@@ -1,6 +1,6 @@
 import { todoServices } from "services";
 import { TodoList } from "types";
-import { normalizeTodoList, sortNewlyCheckedTodo } from "utils";
+import { normalizeTodoList } from "utils";
 import { create } from "zustand";
 
 interface TodoState {
@@ -22,7 +22,7 @@ const useTodoStore = create<TodoState>()((set, get) => ({
       const nextId = get().latestId + 1;
 
       return {
-        todos: [...state.todos, { content, id: nextId, checked: false }],
+        todos: [{ content, id: nextId, checked: false }, ...state.todos],
         latestId: nextId,
       };
     }),
@@ -34,10 +34,13 @@ const useTodoStore = create<TodoState>()((set, get) => ({
 
       newTodos[checkedTodoIndex] = {
         ...newTodos[checkedTodoIndex],
-        checked: true,
+        checked: !newTodos[checkedTodoIndex].checked,
       };
 
-      return { todos: sortNewlyCheckedTodo(newTodos, checkedTodoIndex) };
+      // TODO check if 'normalizeTodoList' is necessary
+      const { todos } = normalizeTodoList(newTodos);
+
+      return { todos };
     }),
   deleteTodo: id =>
     set(state => {

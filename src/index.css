@@ -1,1 +1,163 @@
+/* Custom font */
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @import "tailwindcss";
+
+body {
+  background: var(--color-background);
+}
+
+@theme {
+  /* Overwrite */
+  --default-transition-duration: 250ms;
+  --default-transition-timing-function: linear;
+  --long-animation: 500ms;
+
+  /* Custom variables */
+  --font-barlow: "Barlow Condensed", sans-serif;
+  --default-font-family: Helvetica, sans-serif;
+
+  /* Colors */
+  --color-ever-red: #f96673;
+  --color-ever-blue: #2a6483;
+  --color-ever-grey: #9fbdcd;
+  --color-background: #e4ecf8;
+  --color-input-background: #ffffff80;
+
+  /* Shadow */
+  --shadow-header: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  --shadow-clickable: 0px 0px 5px 0px var(--color-ever-red);
+
+  /* Text-size */
+  --text-xxs: 10px;
+
+  /* Animations */
+  --animate-header-min: shrink var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-header-max: increase var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-fade-in: fade-in-header var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-fade-out: fade-out-header var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-fade-in-delayed: fade-in-delayed var(--default-transition-duration)
+    var(--default-transition-timing-function);
+
+  --animate-fade-out-delayed: fade-out-delayed
+    var(--default-transition-duration) var(--default-transition-timing-function);
+
+  --animate-check-todo: check-todo var(--long-animation) ease-out;
+}
+
+@layer components {
+  /* Keyframes */
+  @keyframes shrink {
+    0% {
+      height: 80px;
+    }
+    100% {
+      height: 40px;
+    }
+  }
+  @keyframes increase {
+    0% {
+      height: 40px;
+    }
+    100% {
+      height: 80px;
+    }
+  }
+
+  @keyframes fade-in-header {
+    0% {
+      opacity: 0;
+      height: 0;
+    }
+    100% {
+      opacity: 1;
+      height: auto;
+    }
+  }
+
+  @keyframes fade-out-header {
+    0% {
+      opacity: 1;
+      height: auto;
+    }
+    90% {
+      height: auto;
+    }
+    100% {
+      opacity: 0;
+      height: 0;
+    }
+  }
+
+  @keyframes fade-in-delayed {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out-delayed {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .ping {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ping::after {
+    content: "";
+    position: absolute;
+    animation: var(--animate-check-todo);
+    animation-delay: var(--default-transition-duration);
+    border-radius: 50%;
+  }
+
+  .ping > img {
+    z-index: 1;
+  }
+
+  @keyframes check-todo {
+    0% {
+      background: var(--color-ever-red);
+      border: 12px solid var(--color-ever-red);
+    }
+    70% {
+      border: 25px solid transparent;
+    }
+    100% {
+      background: transparent;
+      border: 25px solid transparent;
+    }
+  }
+
+  .hover-bg {
+    cursor: pointer;
+    transition: all var(--default-transition-duration)
+      var(--default-transition-timing-function);
+  }
+  .hover-bg:hover {
+    background-color: var(--color-ever-grey);
+  }
+}
