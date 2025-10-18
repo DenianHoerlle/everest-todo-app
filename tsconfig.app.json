@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["react/canary"],
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
@@ -33,7 +34,7 @@
       "store": ["./store"],
       "types": ["./types"],
       "utils": ["./utils"],
-      "hooks": ["./hooks"],
+      "hooks": ["./hooks"]
     }
   },
   "include": ["src"]
