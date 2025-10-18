@@ -17,7 +17,7 @@ const HomeScreen = () => {
   return (
     <div className="mt-20 px-4 pb-4">
       <Form />
-      <div className="mx-auto flex w-full flex-col items-start gap-4 overflow-auto md:max-w-xl">
+      <div className="mx-auto flex w-full flex-col items-start gap-4 md:max-w-xl">
         {orderedTodos.map(todo => {
           return (
             <ViewTransition key={todo.id}>
