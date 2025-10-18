@@ -28,9 +28,10 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
   return (
     <div
       key={id}
-      className={`shadow-input flex w-full items-center gap-3 rounded-full bg-input-background px-4 py-3 ${checkedClassName}`}>
+      className={`shadow-input flex w-full items-center gap-3 rounded-full bg-input-background px-4 py-3 ${checkedClassName}`}
+    >
       <CheckBoxComponent checked={checked} onChange={handleOnChange} />
-      <span className={checkedTextClassName}>{content}</span>
+      <span className={`text-sm ${checkedTextClassName}`}>{content}</span>
       <DeleteIcon onClick={handleDelete} id={id} />
     </div>
   );
