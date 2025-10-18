@@ -1,6 +1,6 @@
 import { startTransition, useEffect, useState, ViewTransition } from "react";
 
-import { Form, Header, Todo } from "components";
+import { Form, Todo } from "components";
 import useTodoStore from "store";
 
 const HomeScreen = () => {
@@ -15,10 +15,9 @@ const HomeScreen = () => {
   }, [todos]);
 
   return (
-    <div className="mt-20">
-      <Header />
+    <div className="mt-20 px-4 pb-4">
       <Form />
-      <div className="mx-auto flex h-[300vh] max-h-[90vh] w-xl flex-col items-start gap-4">
+      <div className="mx-auto flex w-full flex-col items-start gap-4 overflow-auto md:max-w-xl">
         {orderedTodos.map(todo => {
           return (
             <ViewTransition key={todo.id}>

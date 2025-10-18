@@ -42,7 +42,7 @@ const ExpandableButton = ({ formControl, onSubmit }: ExpandableButton) => {
     ? "border-ever-red outline-ever-red"
     : "";
 
-  const buttonCassNames = isOpen ? "w-20" : "h-10 w-10";
+  const buttonCassNames = isOpen ? "w-24" : "h-10 w-10";
 
   const absoluteCenterClassNames =
     "absolute top-1/2 left-1/2 transform-[translate(-50%,-50%)]";
