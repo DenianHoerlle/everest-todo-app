@@ -11,6 +11,7 @@ body {
   /* Overwrite */
   --default-transition-duration: 250ms;
   --default-transition-timing-function: linear;
+  --long-animation: 500ms;
 
   /* Custom variables */
   --font-barlow: "Barlow Condensed", sans-serif;
@@ -43,11 +44,13 @@ body {
   --animate-fade-out: fade-out-header var(--default-transition-duration)
     var(--default-transition-timing-function);
 
-  --animate-fade-in-delayed: fade-in-delayed 250ms
+  --animate-fade-in-delayed: fade-in-delayed var(--default-transition-duration)
     var(--default-transition-timing-function);
 
-  --animate-fade-out-delayed: fade-out-delayed 250ms
-    var(--default-transition-timing-function);
+  --animate-fade-out-delayed: fade-out-delayed
+    var(--default-transition-duration) var(--default-transition-timing-function);
+
+  --animate-check-todo: check-todo var(--long-animation) ease-out;
 }
 
 @layer components {
@@ -117,6 +120,38 @@ body {
       opacity: 0;
     }
   }
+
+  .ping {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ping::after {
+    content: "";
+    position: absolute;
+    animation: var(--animate-check-todo);
+    animation-delay: var(--default-transition-duration);
+    border-radius: 50%;
+  }
+
+  .ping > img {
+    z-index: 1;
+  }
+
+  @keyframes check-todo {
+    0% {
+      background: var(--color-ever-red);
+      border: 12px solid var(--color-ever-red);
+    }
+    70% {
+      border: 25px solid transparent;
+    }
+    100% {
+      background: transparent;
+      border: 25px solid transparent;
+    }
+  }
+
   .hover-bg {
     cursor: pointer;
     transition: all var(--default-transition-duration)
