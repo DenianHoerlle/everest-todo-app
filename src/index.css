@@ -40,11 +40,20 @@ body {
   --animate-header-max: increase var(--default-transition-duration)
     var(--default-transition-timing-function);
 
-  --animate-fade-in: fade-in var(--default-transition-duration)
+  --animate-fade-in: fade-in-header var(--default-transition-duration)
     var(--default-transition-timing-function);
 
-  --animate-fade-out: fade-out var(--default-transition-duration)
+  --animate-fade-out: fade-out-header var(--default-transition-duration)
     var(--default-transition-timing-function);
+
+  --animate-fade-in-delayed: fade-in-delayed 250ms
+    var(--default-transition-timing-function);
+
+  --animate-fade-out-delayed: fade-out-delayed 250ms
+    var(--default-transition-timing-function);
+
+  --expandable-transform-open: scale(1) translateX(0);
+  --expandable-transform-close: scale(0) translateX(500px);
 }
 
 @layer components {
@@ -66,7 +75,7 @@ body {
     }
   }
 
-  @keyframes fade-in {
+  @keyframes fade-in-header {
     0% {
       opacity: 0;
       height: 0;
@@ -77,7 +86,7 @@ body {
     }
   }
 
-  @keyframes fade-out {
+  @keyframes fade-out-header {
     0% {
       opacity: 1;
       height: auto;
@@ -91,6 +100,29 @@ body {
     }
   }
 
+  @keyframes fade-in-delayed {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out-delayed {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
   .hover-bg {
     cursor: pointer;
     transition: all var(--default-transition-duration)
