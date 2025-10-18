@@ -26,7 +26,13 @@
     /* Aliases */
     "baseUrl": "./src",
     "paths": {
-      "@": ["./*"],
+      "assets": ["./assets"],
+      "components": ["./components"],
+      "screens": ["./screens"],
+      "services": ["./services"],
+      "store": ["./store"],
+      "types": ["./types"],
+      "utils": ["./utils"],
     }
   },
   "include": ["src"]

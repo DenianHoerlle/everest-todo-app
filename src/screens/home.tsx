@@ -1,7 +1,13 @@
-import { Header } from "components";
+import { Form, Header, TodoList } from "components";
 
 const HomeScreen = () => {
-  return <Header />;
+  return (
+    <div>
+      <Header />
+      <Form />
+      <TodoList />
+    </div>
+  );
 };
 
 export default HomeScreen;
