@@ -3,10 +3,6 @@
 
 @import "tailwindcss";
 
-* {
-  font-family: var(--font-barlow);
-}
-
 body {
   background: var(--color-background);
 }
@@ -18,6 +14,7 @@ body {
 
   /* Custom variables */
   --font-barlow: "Barlow Condensed", sans-serif;
+  --default-font-family: Helvetica, sans-serif;
 
   /* Colors */
   --color-ever-red: #f96673;
@@ -51,9 +48,6 @@ body {
 
   --animate-fade-out-delayed: fade-out-delayed 250ms
     var(--default-transition-timing-function);
-
-  --expandable-transform-open: scale(1) translateX(0);
-  --expandable-transform-close: scale(0) translateX(500px);
 }
 
 @layer components {

@@ -2,24 +2,30 @@ import { useScroll } from "hooks";
 import everestLogo from "/everest-logo.svg";
 
 const Header = () => {
-  const { goingDown: isHeaderMinimized } = useScroll();
+  const { goingDown: isHeaderMinimized, hasScrolled } = useScroll();
 
-  const maxHeaderClassName = "h-20 animate-header-max ";
-  const minHeaderClassName = "h-10 animate-header-min [&>img]:scale-50";
+  const maxHeaderClassNames = hasScrolled ? "h-20 animate-header-max" : "";
+  const minHeaderClassNames = hasScrolled
+    ? "h-10 animate-header-min [&>img]:scale-50"
+    : "";
 
-  const className = `flex fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassName : maxHeaderClassName}`;
+  const wrapperClassNames = `flex fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassNames : maxHeaderClassNames}`;
 
   const renderText = () => {
-    const subTextClassName = isHeaderMinimized
+    const subTextAnimationClassNames = isHeaderMinimized
       ? "animate-fade-out h-0 opacity-0"
       : "animate-fade-in ";
 
+    const subTextClassNames = hasScrolled ? subTextAnimationClassNames : "";
+
     return (
       <>
-        <h1 className="text-lg font-bold whitespace-nowrap">
+        <h1 className="font-barlow text-lg font-bold whitespace-nowrap">
           Everest Systems' TODO App
         </h1>
-        <h2 className={`text-xxs whitespace-nowrap ${subTextClassName}`}>
+        <h2
+          className={`font-barlow text-xxs whitespace-nowrap ${subTextClassNames}`}
+        >
           By Dênian Hoerlle
         </h2>
       </>
@@ -27,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className={className}>
+    <header className={wrapperClassNames}>
       <img className="transition" src={everestLogo} />
       <div className="mx-auto flex max-w-min flex-col text-right">
         {renderText()}
