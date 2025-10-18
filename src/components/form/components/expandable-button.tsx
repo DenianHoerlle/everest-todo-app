@@ -6,9 +6,10 @@ import { TodoContent } from "types";
 
 type ExpandableButton = {
   formControl: UseFormReturn<TodoContent>;
+  onSubmit: () => void;
 };
 
-const ExpandableButton = ({ formControl }: ExpandableButton) => {
+const ExpandableButton = ({ formControl, onSubmit }: ExpandableButton) => {
   const [isOpen, setIsOpen] = useState(false);
   const canAnimate = useRef(false);
   const {
@@ -20,6 +21,8 @@ const ExpandableButton = ({ formControl }: ExpandableButton) => {
 
   const handleClick = () => {
     canAnimate.current = true;
+    if (isOpen) return onSubmit();
+
     if (!isOpen) {
       setIsOpen(true);
       setFocus("content");
@@ -31,6 +34,7 @@ const ExpandableButton = ({ formControl }: ExpandableButton) => {
   ) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
       setIsOpen(false);
+      clearErrors();
     }
   };
 
@@ -61,9 +65,6 @@ const ExpandableButton = ({ formControl }: ExpandableButton) => {
         autoFocus
         {...register("content", {
           required: true,
-          onBlur: () => {
-            clearErrors();
-          },
         })}
       />
     );
@@ -102,6 +103,7 @@ const ExpandableButton = ({ formControl }: ExpandableButton) => {
       onBlur={handleWrapperBlur}
     >
       {renderInput()}
+
       <button
         type="button"
         className={`hover-bg relative cursor-pointer rounded-4xl bg-ever-red hover:shadow-clickable ${buttonCassNames}`}

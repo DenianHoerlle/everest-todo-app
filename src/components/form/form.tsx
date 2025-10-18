@@ -16,12 +16,14 @@ const Form = () => {
     formControl.reset();
   };
 
+  const handleOnSubmit = formControl.handleSubmit(onSubmit);
+
   return (
     <form
       className="mx-auto flex max-w-xl flex-col py-10"
-      onSubmit={formControl.handleSubmit(onSubmit)}
+      onSubmit={handleOnSubmit}
     >
-      <ExpandableButton formControl={formControl} />
+      <ExpandableButton formControl={formControl} onSubmit={handleOnSubmit} />
     </form>
   );
 };
