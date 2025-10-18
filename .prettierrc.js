@@ -2,7 +2,7 @@
 
 const config = {
   arrowParens: "avoid",
-  bracketSameLine: true,
+  bracketSameLine: false,
   bracketSpacing: true,
   singleQuote: false,
   trailingComma: "all",
