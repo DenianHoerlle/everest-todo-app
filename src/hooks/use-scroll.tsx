@@ -20,14 +20,13 @@ const getScrollPosition = () => {
 const useScroll = () => {
   const defaultScrollTop = useMemo(() => getScrollPosition(), []);
   const previousScrollTop = useRef(defaultScrollTop);
+  const hasScrolled = useRef(false);
   const [currentScrollTop, setCurrentScrollTop] = useState(defaultScrollTop);
   const goingDown = previousScrollTop.current < currentScrollTop;
 
-  const isRecharging = useRef<boolean>(false);
-
   useEffect(() => {
     const handleDocumentScroll = throttle(() => {
-      isRecharging.current = false;
+      hasScrolled.current = true;
 
       const scrollTop = getScrollPosition();
 
@@ -47,6 +46,7 @@ const useScroll = () => {
     scrollTop: currentScrollTop,
     previousScrollTop: previousScrollTop.current,
     goingDown,
+    hasScrolled: hasScrolled.current,
   };
 };
 
