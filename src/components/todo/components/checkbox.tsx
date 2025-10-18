@@ -14,7 +14,6 @@ const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
 
   const inputClassNames = isChecked ? "bg-ever-red" : "";
 
-  // TODO create 'uncheck' animation
   const wrapperAnimationClassNames = isAnimating
     ? "duration-500 bg-ever-red scale-150 ping"
     : "";
@@ -23,6 +22,8 @@ const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
 
   const handleOnChange = () => {
     if (isAnimating) return;
+
+    if (isChecked) return onChange();
 
     setIsAnimating(true);
 
