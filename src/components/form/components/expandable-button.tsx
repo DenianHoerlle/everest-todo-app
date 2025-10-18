@@ -1,5 +1,5 @@
 import { Plus } from "assets";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 import { TodoContent } from "types";
@@ -10,6 +10,7 @@ type props = {
 
 const ExpandableButton = ({ formControl }: props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const canAnimate = useRef(false);
   const {
     formState: { errors },
     register,
@@ -18,6 +19,7 @@ const ExpandableButton = ({ formControl }: props) => {
   } = formControl;
 
   const handleClick = () => {
+    canAnimate.current = true;
     if (!isOpen) {
       setIsOpen(true);
       setFocus("content");
@@ -46,11 +48,11 @@ const ExpandableButton = ({ formControl }: props) => {
 
   const fadeInOnOpen = isOpen
     ? "animate-fade-in-delayed"
-    : "animate-fade-out-delayed opacity-0";
+    : `${canAnimate.current && "animate-fade-out-delayed"} opacity-0`;
 
   const fadeInOnClose = isOpen
     ? "animate-fade-out-delayed opacity-0"
-    : "animate-fade-in-delayed";
+    : `${canAnimate.current && "animate-fade-in-delayed"}`;
 
   const buttonCassNames = isOpen ? "w-20" : "h-10 w-10";
 
