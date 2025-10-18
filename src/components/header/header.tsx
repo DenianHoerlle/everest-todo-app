@@ -9,7 +9,7 @@ const Header = () => {
     ? "h-10 animate-header-min [&>img]:scale-50"
     : "";
 
-  const wrapperClassNames = `flex fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassNames : maxHeaderClassNames}`;
+  const wrapperClassNames = `flex bg-background z-10 fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassNames : maxHeaderClassNames}`;
 
   const renderText = () => {
     const subTextAnimationClassNames = isHeaderMinimized
