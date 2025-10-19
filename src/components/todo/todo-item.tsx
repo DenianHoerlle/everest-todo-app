@@ -44,7 +44,7 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
   return (
     <div
       key={id}
-      className={`shadow-input flex w-full items-center gap-3 rounded-full bg-input-background px-4 py-3 ${checkedClassName}`}
+      className={`flex w-full items-center gap-3 rounded-full bg-input-background px-4 py-3 shadow-input ${checkedClassName}`}
     >
       <CheckBoxComponent isChecked={checked} onChange={handleOnChange} />
       {isEditable ? (

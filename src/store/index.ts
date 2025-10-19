@@ -6,6 +6,7 @@ import { create } from "zustand";
 interface TodoState {
   todos: TodoList;
   filteredTodos: TodoList | null;
+  isLoading: boolean;
   latestId: number;
   getInitialTodos: () => void;
   addTodo: (content: string) => void;
@@ -19,6 +20,7 @@ interface TodoState {
 const useTodoStore = create<TodoState>()((set, get) => ({
   todos: [],
   filteredTodos: null,
+  isLoading: true,
   latestId: 0,
   addTodo: content =>
     set(state => {
@@ -76,7 +78,7 @@ const useTodoStore = create<TodoState>()((set, get) => ({
     // TODO avaliate if theres a better place to handle API request
     const { todos, latestId } = normalizeTodoList(data.todos);
 
-    set({ todos, latestId });
+    set({ todos, latestId, isLoading: false });
   },
 }));
 
