@@ -14,7 +14,7 @@ const linkInfos = [
 ];
 
 const Footer = () => (
-  <div className="fixed bottom-0 flex h-10 w-full items-center justify-between bg-white px-4">
+  <footer className="fixed bottom-0 flex h-10 w-full items-center justify-between bg-white px-4">
     <h2 className="mx-auto font-barlow">Developed by Dênian Hoerlle</h2>
 
     <div className="flex gap-5">
@@ -24,7 +24,7 @@ const Footer = () => (
         </a>
       ))}
     </div>
-  </div>
+  </footer>
 );
 
 export default Footer;
