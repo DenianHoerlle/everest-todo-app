@@ -78,6 +78,7 @@ const ExpandableButton = ({ formControl, onSubmit }: ExpandableButton) => {
     return (
       <img
         src={Plus}
+        alt="plus-icon"
         className={`w-3/4 ${fadeInOnClose} ${absoluteCenterClassNames}`}
       />
     );
@@ -106,9 +107,10 @@ const ExpandableButton = ({ formControl, onSubmit }: ExpandableButton) => {
 
       <button
         type="button"
-        className={`hover-bg relative cursor-pointer rounded-4xl bg-ever-red hover:shadow-clickable ${buttonCassNames}`}
-        onClick={handleClick}
         name="expandable"
+        aria-label="add-icon"
+        onClick={handleClick}
+        className={`hover-bg relative cursor-pointer rounded-4xl bg-ever-red hover:shadow-clickable ${buttonCassNames}`}
       >
         {renderPlusIcon()}
         {renderSubmitButton()}

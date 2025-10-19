@@ -68,7 +68,7 @@ const HomeScreen = () => {
   if (isLoading) return renderHomePageSkeleton();
 
   return (
-    <div className="mt-20 flex min-h-[calc(100vh-120px)] flex-col gap-4 px-4 pb-4">
+    <div className="mt-20 flex min-h-[calc(100vh-120px)] flex-col gap-4 px-4 pb-14">
       <Search />
       <Form />
       <div className="mx-auto flex w-full flex-col items-start gap-4 md:max-w-xl">

@@ -34,21 +34,23 @@ const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
   };
 
   return (
-    <label
+    <div
       className={`container flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-ever-red hover:shadow-clickable ${wrapperAnimationClassNames} ${inputClassNames}`}
     >
       <input
         className="size-0 appearance-none"
         type="checkbox"
+        name="hidden-input"
+        aria-label="check-todo-button"
         checked={isChecked}
         onChange={handleOnChange}
-        name="hidden-input"
       />
       <img
         src={CheckMark}
+        alt="checked-icon"
         className={`w-3 transition ${checkmarkClassNames}`}
       />
-    </label>
+    </div>
   );
 };
 

@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <header className={wrapperClassNames}>
-      <img className="transition" src={everestLogo} />
+      <img src={everestLogo} alt="everest-logo" className="transition" />
       <div className="mx-auto flex w-full flex-col text-left md:max-w-xl">
         {renderText()}
       </div>
