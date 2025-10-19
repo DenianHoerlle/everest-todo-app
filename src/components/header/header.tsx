@@ -11,27 +11,11 @@ const Header = () => {
 
   const wrapperClassNames = `flex bg-white z-10 fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassNames : maxHeaderClassNames}`;
 
-  const renderText = () => {
-    const subTextAnimationClassNames = isHeaderMinimized
-      ? "animate-fade-out h-0 opacity-0"
-      : "animate-fade-in ";
-
-    const subTextClassNames = hasScrolled ? subTextAnimationClassNames : "";
-
-    return (
-      <>
-        <h1 className="font-barlow text-2xl font-bold whitespace-nowrap">
-          Everest Systems' TODO App
-        </h1>
-        {/* TODO move to footer */}
-        <h2
-          className={`font-barlow text-xxs whitespace-nowrap ${subTextClassNames}`}
-        >
-          By Dênian Hoerlle
-        </h2>
-      </>
-    );
-  };
+  const renderText = () => (
+    <h1 className="font-barlow text-2xl font-bold whitespace-nowrap">
+      Everest Systems' TODO App
+    </h1>
+  );
 
   return (
     <header className={wrapperClassNames}>
