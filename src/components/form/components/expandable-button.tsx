@@ -108,6 +108,7 @@ const ExpandableButton = ({ formControl, onSubmit }: ExpandableButton) => {
         type="button"
         className={`hover-bg relative cursor-pointer rounded-4xl bg-ever-red hover:shadow-clickable ${buttonCassNames}`}
         onClick={handleClick}
+        name="expandable"
       >
         {renderPlusIcon()}
         {renderSubmitButton()}
