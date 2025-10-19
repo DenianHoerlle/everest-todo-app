@@ -57,18 +57,12 @@ const useTodoStore = create<TodoState>()((set, get) => ({
     set(state => {
       const newTodos = new Array(...state.todos);
 
-      console.log("newTodos", newTodos);
-
       const editedTodoIndex = newTodos.findIndex(todo => todo.id === id);
-
-      console.log("editedTodoIndex", editedTodoIndex);
 
       newTodos[editedTodoIndex] = {
         ...newTodos[editedTodoIndex],
         content: newContent,
       };
-
-      console.log("newTodos", newTodos);
 
       return { todos: newTodos };
     }),
