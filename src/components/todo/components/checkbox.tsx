@@ -42,6 +42,7 @@ const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
         type="checkbox"
         checked={isChecked}
         onChange={handleOnChange}
+        name="hidden-input"
       />
       <img
         src={CheckMark}
