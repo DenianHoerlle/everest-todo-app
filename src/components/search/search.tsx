@@ -36,11 +36,12 @@ const SearchBar = () => {
   }, [searchText, todos]);
 
   return (
-    <div className="relative m-auto mt-10 flex h-10 w-full items-center px-5 shadow-input md:w-xl">
+    <div className="relative mx-auto mt-10 flex h-10 w-full items-center px-5 shadow-input md:w-xl">
       <img src={SearchIcon} className="mr-3 w-5" />
       <input
         className="h-full w-full outline-none placeholder:text-ever-grey"
         value={searchText}
+        name="search-input"
         placeholder="Search"
         onChange={e => setSearchText(e.target.value)}
       />
