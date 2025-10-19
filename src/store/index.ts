@@ -10,6 +10,7 @@ interface TodoState {
   getInitialTodos: () => void;
   checkTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
+  editTodo: (id: number, newContent: string) => void;
 }
 
 // TODO this hook could use some readability improvements(don't know how yet tho)
@@ -49,6 +50,25 @@ const useTodoStore = create<TodoState>()((set, get) => ({
       const removedTodoIndex = newTodos.findIndex(todo => todo.id === id);
 
       newTodos.splice(removedTodoIndex, 1);
+
+      return { todos: newTodos };
+    }),
+  editTodo: (id, newContent) =>
+    set(state => {
+      const newTodos = new Array(...state.todos);
+
+      console.log("newTodos", newTodos);
+
+      const editedTodoIndex = newTodos.findIndex(todo => todo.id === id);
+
+      console.log("editedTodoIndex", editedTodoIndex);
+
+      newTodos[editedTodoIndex] = {
+        ...newTodos[editedTodoIndex],
+        content: newContent,
+      };
+
+      console.log("newTodos", newTodos);
 
       return { todos: newTodos };
     }),
