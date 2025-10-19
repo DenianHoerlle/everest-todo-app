@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 
-import { Header } from "components";
+import { Footer, Header } from "components";
 import { HomeScreen } from "screens";
 import useTodoStore from "store";
 
@@ -15,6 +15,7 @@ const App: FC = () => {
     <>
       <Header />
       <HomeScreen />
+      <Footer />
     </>
   );
 };
