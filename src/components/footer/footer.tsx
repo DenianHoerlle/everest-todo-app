@@ -12,7 +12,7 @@ const linkInfos = [
 ];
 
 const Footer = () => (
-  <div className="flex h-10 items-center justify-between bg-white px-4 opacity-70">
+  <div className="fixed bottom-0 flex h-10 w-full items-center justify-between bg-white px-4">
     <h2 className="mx-auto font-barlow">Developed by Dênian Hoerlle</h2>
 
     <div className="flex gap-5">
