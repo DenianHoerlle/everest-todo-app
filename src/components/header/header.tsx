@@ -9,7 +9,7 @@ const Header = () => {
     ? "h-10 animate-header-min [&>img]:scale-50"
     : "";
 
-  const wrapperClassNames = `flex fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassNames : maxHeaderClassNames}`;
+  const wrapperClassNames = `flex bg-white z-10 fixed top-0 transition w-full justify-start items-center px-5 py-3 shadow-header ${isHeaderMinimized ? minHeaderClassNames : maxHeaderClassNames}`;
 
   const renderText = () => {
     const subTextAnimationClassNames = isHeaderMinimized
@@ -20,9 +20,10 @@ const Header = () => {
 
     return (
       <>
-        <h1 className="font-barlow text-lg font-bold whitespace-nowrap">
+        <h1 className="font-barlow text-2xl font-bold whitespace-nowrap">
           Everest Systems' TODO App
         </h1>
+        {/* TODO move to footer */}
         <h2
           className={`font-barlow text-xxs whitespace-nowrap ${subTextClassNames}`}
         >
@@ -35,7 +36,7 @@ const Header = () => {
   return (
     <header className={wrapperClassNames}>
       <img className="transition" src={everestLogo} />
-      <div className="mx-auto flex max-w-min flex-col text-right">
+      <div className="mx-auto flex w-full flex-col text-left md:max-w-xl">
         {renderText()}
       </div>
     </header>

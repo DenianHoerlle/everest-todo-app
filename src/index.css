@@ -27,9 +27,13 @@ body {
   /* Shadow */
   --shadow-header: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
   --shadow-clickable: 0px 0px 5px 0px var(--color-ever-red);
+  --shadow-input: 0px 3px 2px -2px rgba(0, 0, 0, 0.05);
 
   /* Text-size */
   --text-xxs: 10px;
+
+  /* Height */
+  --max-list-size: 512px;
 
   /* Animations */
   --animate-header-min: shrink var(--default-transition-duration)
@@ -159,5 +163,14 @@ body {
   }
   .hover-bg:hover {
     background-color: var(--color-ever-grey);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
   }
 }

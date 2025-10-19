@@ -107,6 +107,8 @@ const DeleteIcon = ({ onClick, id }: { onClick: () => void; id: number }) => {
       onMouseDown={handleOnMouseDown}
       onMouseLeave={handleCancelDelete}
       onMouseUp={handleCancelDelete}
+      onTouchStart={handleOnMouseDown}
+      onTouchEnd={handleCancelDelete}
       className={`container ml-auto flex h-6 w-6 cursor-pointer items-center justify-center transition ${buttonAnimation}`}
       key={id}
     >

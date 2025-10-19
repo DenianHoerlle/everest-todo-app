@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 
+import { Header } from "components";
 import { HomeScreen } from "screens";
 import useTodoStore from "store";
 
@@ -10,7 +11,12 @@ const App: FC = () => {
     initStore();
   }, [initStore]);
 
-  return <HomeScreen />;
+  return (
+    <>
+      <Header />
+      <HomeScreen />
+    </>
+  );
 };
 
 export default App;

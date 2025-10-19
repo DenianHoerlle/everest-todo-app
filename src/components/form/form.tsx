@@ -20,7 +20,7 @@ const Form = () => {
 
   return (
     <form
-      className="mx-auto flex max-w-xl flex-col py-10"
+      className="mx-auto flex w-full flex-col md:max-w-xl"
       onSubmit={handleOnSubmit}
     >
       <ExpandableButton formControl={formControl} onSubmit={handleOnSubmit} />

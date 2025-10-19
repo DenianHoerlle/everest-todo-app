@@ -5,16 +5,20 @@ import { create } from "zustand";
 
 interface TodoState {
   todos: TodoList;
+  filteredTodos: TodoList | null;
   latestId: number;
-  addTodo: (content: string) => void;
   getInitialTodos: () => void;
+  addTodo: (content: string) => void;
   checkTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
+  editTodo: (id: number, newContent: string) => void;
+  setFilteredTodos: (filteredTodos: TodoList | null) => void;
 }
 
 // TODO this hook could use some readability improvements(don't know how yet tho)
 const useTodoStore = create<TodoState>()((set, get) => ({
   todos: [],
+  filteredTodos: null,
   latestId: 0,
   addTodo: content =>
     set(state => {
@@ -52,6 +56,20 @@ const useTodoStore = create<TodoState>()((set, get) => ({
 
       return { todos: newTodos };
     }),
+  editTodo: (id, newContent) =>
+    set(state => {
+      const newTodos = new Array(...state.todos);
+
+      const editedTodoIndex = newTodos.findIndex(todo => todo.id === id);
+
+      newTodos[editedTodoIndex] = {
+        ...newTodos[editedTodoIndex],
+        content: newContent,
+      };
+
+      return { todos: newTodos };
+    }),
+  setFilteredTodos: filteredTodos => set(() => ({ filteredTodos })),
   getInitialTodos: async () => {
     const { data } = await todoServices.getTodoList();
 

@@ -67,3 +67,6 @@ export const normalizeTodoList = (
 
   return { latestId: max, todos: filteredSortedTodos };
 };
+
+export const checkSubstring = (string: string, substring: string) =>
+  string.toLowerCase().includes(substring.toLowerCase());
