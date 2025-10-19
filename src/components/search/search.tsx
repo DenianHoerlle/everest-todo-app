@@ -1,3 +1,4 @@
+import { SearchIcon } from "assets";
 import { useEffect, useRef, useState } from "react";
 import useTodoStore from "store";
 import { checkSubstring } from "utils";
@@ -35,9 +36,10 @@ const SearchBar = () => {
   }, [searchText, todos]);
 
   return (
-    <div className="relative m-auto flex h-10 w-full items-center rounded-4xl border border-ever-blue px-5 md:w-xl">
+    <div className="relative m-auto mt-10 flex h-10 w-full items-center px-5 shadow-input md:w-xl">
+      <img src={SearchIcon} className="mr-3 w-5" />
       <input
-        className="h-full w-full outline-none"
+        className="h-full w-full outline-none placeholder:text-ever-grey"
         value={searchText}
         placeholder="Search"
         onChange={e => setSearchText(e.target.value)}
