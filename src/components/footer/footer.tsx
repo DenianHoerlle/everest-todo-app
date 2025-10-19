@@ -12,14 +12,12 @@ const linkInfos = [
 ];
 
 const Footer = () => (
-  <div className="flex h-10 items-center justify-between bg-white px-4">
-    <h2 className="whitespace-nowrap} font-barlow text-sm">
-      By Dênian Hoerlle
-    </h2>
+  <div className="flex h-10 items-center justify-between bg-white px-4 opacity-70">
+    <h2 className="mx-auto font-barlow">Developed by Dênian Hoerlle</h2>
 
     <div className="flex gap-5">
       {linkInfos.map(({ icon, link }) => (
-        <a target="_blank" rel="noopener noreferrer" href={link}>
+        <a key={link} target="_blank" rel="noopener noreferrer" href={link}>
           <img src={icon} className="w-5" />
         </a>
       ))}
