@@ -4,10 +4,12 @@ const linkInfos = [
   {
     icon: Github,
     link: "https://github.com/DenianHoerlle/everest-todo-app",
+    alt: "github-icon",
   },
   {
     icon: Linkedin,
     link: "https://www.linkedin.com/in/denian-closs-hoerlle/",
+    alt: "linkedin-icon",
   },
 ];
 
@@ -16,9 +18,9 @@ const Footer = () => (
     <h2 className="mx-auto font-barlow">Developed by Dênian Hoerlle</h2>
 
     <div className="flex gap-5">
-      {linkInfos.map(({ icon, link }) => (
+      {linkInfos.map(({ icon, link, alt }) => (
         <a key={link} target="_blank" rel="noopener noreferrer" href={link}>
-          <img src={icon} className="w-5" />
+          <img src={icon} alt={alt} className="w-5" />
         </a>
       ))}
     </div>

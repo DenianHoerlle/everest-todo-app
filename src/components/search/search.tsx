@@ -37,7 +37,7 @@ const SearchBar = () => {
 
   return (
     <div className="relative mx-auto mt-10 flex h-10 w-full items-center px-5 shadow-input md:w-xl">
-      <img src={SearchIcon} className="mr-3 w-5" />
+      <img src={SearchIcon} alt="search-icon" className="mr-3 w-5" />
       <input
         className="h-full w-full outline-none placeholder:text-ever-grey"
         value={searchText}

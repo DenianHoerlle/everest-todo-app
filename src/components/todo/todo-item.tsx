@@ -38,7 +38,7 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
     reset();
   };
 
-  const checkedClassName = checked ? "opacity-50" : "";
+  const checkedClassName = checked ? "opacity-70" : "";
   const checkedTextClassNames = checked ? "line-through" : "";
 
   return (
@@ -52,8 +52,8 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
           <input
             {...register("content")}
             name="content"
-            readOnly={!isEditable}
             autoFocus
+            readOnly={!isEditable}
             onBlur={handleOnBlur}
             className={`flex w-full outline-0 ${checkedTextClassNames}`}
           />
