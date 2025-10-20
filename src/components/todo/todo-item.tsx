@@ -47,7 +47,6 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
         <input
           {...register("content")}
           name="content"
-          autoFocus
           onBlur={handleOnBlur}
           className={`flex w-full outline-0 ${checkedTextClassNames}`}
         />
