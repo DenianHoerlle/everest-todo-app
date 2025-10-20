@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback } from "react";
 
 import useTodoStore from "store";
 import { TodoContent, TodoEntry } from "types";
@@ -10,9 +10,7 @@ import { CheckBoxComponent, DeleteIcon } from "./components";
 const { checkTodo, deleteTodo, editTodo } = useTodoStore.getState();
 
 const TodoItem = ({ checked, content, id }: TodoEntry) => {
-  const [isEditable, setIsEditable] = useState(false);
-
-  const { handleSubmit, register, reset } = useForm<TodoContent>({
+  const { handleSubmit, register } = useForm<TodoContent>({
     defaultValues: {
       content,
     },
@@ -22,7 +20,6 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
     if (!data.content) return;
 
     editTodo(id, data.content);
-    setIsEditable(false);
   };
 
   const handleOnChange = useCallback(() => {
@@ -34,8 +31,7 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
   }, [id]);
 
   const handleOnBlur = () => {
-    setIsEditable(false);
-    reset();
+    handleSubmit(handleEdit);
   };
 
   const checkedClassName = checked ? "opacity-70" : "";
@@ -47,25 +43,15 @@ const TodoItem = ({ checked, content, id }: TodoEntry) => {
       className={`flex w-full items-center gap-3 rounded-full bg-input-background px-4 py-3 shadow-input ${checkedClassName}`}
     >
       <CheckBoxComponent isChecked={checked} onChange={handleOnChange} />
-      {isEditable ? (
-        <form onSubmit={handleSubmit(handleEdit)} className="flex flex-1">
-          <input
-            {...register("content")}
-            name="content"
-            autoFocus
-            readOnly={!isEditable}
-            onBlur={handleOnBlur}
-            className={`flex w-full outline-0 ${checkedTextClassNames}`}
-          />
-        </form>
-      ) : (
-        <span
-          onDoubleClick={() => setIsEditable(true)}
-          className={`flex flex-1 cursor-pointer text-sm ${checkedTextClassNames}`}
-        >
-          {content}
-        </span>
-      )}
+      <form onSubmit={handleSubmit(handleEdit)} className="flex flex-1">
+        <input
+          {...register("content")}
+          name="content"
+          autoFocus
+          onBlur={handleOnBlur}
+          className={`flex w-full outline-0 ${checkedTextClassNames}`}
+        />
+      </form>
       <DeleteIcon onClick={handleDelete} id={id} />
     </div>
   );

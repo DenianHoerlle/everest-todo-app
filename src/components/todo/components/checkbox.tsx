@@ -34,7 +34,7 @@ const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
   };
 
   return (
-    <div
+    <label
       className={`container flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-ever-red hover:shadow-clickable ${wrapperAnimationClassNames} ${inputClassNames}`}
     >
       <input
@@ -50,7 +50,7 @@ const CheckBoxComponent = ({ isChecked, onChange }: CheckBox) => {
         alt="checked-icon"
         className={`w-3 transition ${checkmarkClassNames}`}
       />
-    </div>
+    </label>
   );
 };
 
