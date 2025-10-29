@@ -1,19 +1,30 @@
 ![Everest Logo](public/everest-logo.svg?raw=true "Everest Logo")
 
-# TODO App Challenge
+# My TODO App Challenge
 
-Instructions for the implementation can be found in the [INSTRUCTIONS](./INSTRUCTIONS.md) doc.
+My take on the TODO app take home assignment made by Everest.
 
-## Starting the app for the first time
+# How its made
 
-### `yarn install`
+## Main tools:
+### React(canary version - 19.3.0-canary-1324e1bb-20251016)
+Switched to canary version to access experimental `<ViewTransition />` component;
 
-This will install all the dependencies of the project defined in `package.json`. Whenever that file changes, you will also need to re-run this command to make sure all packages are updated.
+### Vite
+Ultra fast build tool used that greatly improves dev experience.
 
-### `yarn start`
+### Tailwindcss
+Using CSS for the versatile customization and the standardization it incentivizes
 
-Opens a browser tab pointing to [http://localhost:5173](http://localhost:5173).
+### Zustand
+Zustand is the choosen tool for the global state. It offers unopinionated and very light implementation.
 
-- Runs the app in the development mode.
-- The page will reload if you make edits.
-- You will also see any typing and lint errors in the console.
+## Running the app
+
+### Run `yarn install`
+
+### Run `yarn start`
+
+Runs on [http://localhost:5173](http://localhost:5173) by default.
+
+### Be sure to check out `references.md` to understand key decisions made during development!
