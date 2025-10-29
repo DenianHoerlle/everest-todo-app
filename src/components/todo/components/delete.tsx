@@ -5,9 +5,9 @@ type AnimateValues = {
   offset: number;
 };
 
-// TODO try (again) to source colors from tailwind (index.css) file
+// Due to SVG animations nature, these cannot be sourced from tailwind
 const everRed = "#f96673";
-const everGrey = "#9fbdcd";
+const everGrey = "9fbdcd";
 
 const animateValues: AnimateValues[] = [
   { values: `${everGrey}; ${everRed}; ${everRed}; ${everRed};`, offset: 0 },
